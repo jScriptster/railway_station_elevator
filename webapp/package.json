@@ -1,0 +1,11 @@
+{
+	"name": "Railway-Station-Elevators-WEBAPP",
+  	"description": "",
+  	"version": "0.0.1",
+  	"engines": {
+    	"node": ">=4.4.5"
+  	},
+  	"dependencies": {
+		"express": "4.13.4"
+  	}
+}
