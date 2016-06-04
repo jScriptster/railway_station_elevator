@@ -8,6 +8,7 @@
   	"dependencies": {
 		"express": "4.13.4",
 		"csvtojson": "0.5.14",
-		"request": "*"
+		"request": "*",
+		"jade": "1.11.0"
   	}
 }

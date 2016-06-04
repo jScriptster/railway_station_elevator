@@ -1,5 +1,5 @@
 "use strict";
-const DATA_URL = "http://127.0.0.1:3000/stations.csv";
+const DATA_URL = "http://127.0.0.1:3000/static/stations.csv";
 
 var headers = new Array(13).fill('unused');
 headers[0] = 'land';
