@@ -6,6 +6,14 @@
     	"node": ">=0.10.0"
   	},
   	"dependencies": {
-		
-  	}
+		"react": "*",
+	  	"react-dom": "*"
+  	},
+	"devDependencies": {
+		"webpack": "*",
+		"babel-core": "*",
+		"babel-loader": "*",
+		"babel-preset-es2015": "*",
+		"babel-preset-react": "*"
+	}
 }
