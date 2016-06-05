@@ -14,6 +14,11 @@
 		"babel-core": "*",
 		"babel-loader": "*",
 		"babel-preset-es2015": "*",
-		"babel-preset-react": "*"
+		"babel-preset-react": "*",
+		"style-loader": "*",
+		"css-loader": "*",
+		"less-loader": "2.2.3",
+		"less": "2.3.1",
+		"extract-text-webpack-plugin": "*"
 	}
 }

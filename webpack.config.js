@@ -1,7 +1,9 @@
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
     entry: "./client/index.jsx",
     output: {
-        path: __dirname + '/webapp/public/dest',
+        path: __dirname + '/webapp/public/dist',
         filename: "bundle.js"
     },
     module: {
@@ -13,7 +15,15 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react']
                 }
+            },
+            {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
             }
         ]
-    }
+    },
+    plugins: [
+        // extract inline css into separate 'styles.css'
+        new ExtractTextPlugin('main.css')
+    ]
 };

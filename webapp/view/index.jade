@@ -1,13 +1,19 @@
-h1 Hello Jade!
+html
+    head
+        link(rel="stylesheet", href="#{url.static}/dist/main.css")
+
+    body
+
+        h1 Hello Jade!
 
 
-p #{numberCurrentlyInactiveElevators}
-p #{numberCurrentlyActiveElevators}
-p #{url.elevators}
-p #{url.stations}
-p #{url.static}
-p #{url.apiStationSearch}
+        p #{numberCurrentlyInactiveElevators}
+        p #{numberCurrentlyActiveElevators}
+        p #{url.elevators}
+        p #{url.stations}
+        p #{url.static}
+        p #{url.apiStationSearch}
 
 
-div#myApp
-script(src="#{url.static}/dest/bundle.js", type="text/javascript")
+        div#myApp
+        script(src="#{url.static}/dist/bundle.js", type="text/javascript")

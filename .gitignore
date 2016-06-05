@@ -1,4 +1,4 @@
 node_modules/
 webapp/node_modules/
-webapp/public/dest/
+webapp/public/dist/
 .idea/
