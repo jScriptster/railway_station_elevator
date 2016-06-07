@@ -1,0 +1,1 @@
+export const APP_MAIN_STATE_CHANGED = "appMainStateChanged";
