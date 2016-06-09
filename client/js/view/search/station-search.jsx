@@ -9,7 +9,7 @@ export default class StationSearch extends React.Component {
     }
 
     onChangeTextInput(e) {
-        console.log(e.currentTarget.value);
+        this.props.model.stationSearch.search(e.currentTarget.value);
     }
 
 

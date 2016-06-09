@@ -1,5 +1,5 @@
 "use strict";
-const DATA_URL = "http://127.0.0.1:3000/static/stations.csv";
+const DATA_ENDPOINT = "/stations.csv";
 
 var headers = new Array(13).fill('unused');
 headers[0] = 'land';
@@ -24,7 +24,7 @@ var singletonServiceInstance = {
 
     data: [],
 
-    fetch () {
+    fetch (pathStatic) {
         var newData = [];
 
         //record_parsed will be emitted each csv row being processed
@@ -36,7 +36,7 @@ var singletonServiceInstance = {
             this.data = newData;
         });
 
-        require("request").get(DATA_URL).pipe(csvConverter);
+        require("request").get('http://127.0.0.1:3000' + pathStatic + DATA_ENDPOINT).pipe(csvConverter);
     },
 
     search (query) {

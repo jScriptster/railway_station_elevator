@@ -28,10 +28,11 @@ app.get('/', (req, res) => {
     });
 });
 
+
 app.use(urlStatic, express.static('public'));
 
 app.listen(3000, () => {
     console.log('listening on port 3000...');
-    stationService.fetch();
+    stationService.fetch(urlStatic);
     elevatorService.fetch();
 });

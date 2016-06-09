@@ -1,10 +1,13 @@
 import PubSub from 'pubsub-js';
-import * as pubSubTopics from '../pub-sub-topics.js';
 import StationSearchModel from './station-search-model';
+import StationSelectionModel from './station-selection-model';
 
 export default class MainModel {
     constructor() {
-        this._stationSearch = new StationSearchModel();
+        this.__submodel = {
+            stationSearch: new StationSearchModel(),
+            stationSelection: new StationSelectionModel()
+        };
 
 
         this.__data = {
@@ -15,11 +18,19 @@ export default class MainModel {
     set appState(val) {
         if (this.__data.appState !== val) {
             this.__data.appState = val;
-            PubSub.publish(pubSubTopics.APP_MAIN_STATE_CHANGED, val);
+            PubSub.publish(PubSub.customTopics.APP_MAIN_STATE_CHANGED, val);
         }
     }
 
     get appState() {
         return this.__data.appState;
+    }
+
+    get stationSearch() {
+        return this.__submodel.stationSearch;
+    }
+
+    get stationSelection() {
+        return this.__submodel.stationSelection;
     }
 }

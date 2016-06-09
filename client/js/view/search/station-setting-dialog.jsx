@@ -12,9 +12,9 @@ export default class StationSettingDialog extends React.Component {
     render() {
         return (
             <div>
-                <StationSearch />
-                <StationSearchSuggestion />
-                <StationSelection />
+                <StationSearch model={this.props.model} />
+                <StationSearchSuggestion model={this.props.model} />
+                <StationSelection model={this.props.model} />
             </div>
         );
     }

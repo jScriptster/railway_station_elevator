@@ -5,7 +5,6 @@ import * as pubSubTopics from './pub-sub-topics.js';
 import MainModel from './model/main-model'
 import StationSettingsDialog from './view/search/station-setting-dialog.jsx';
 
-
 require("./../less/index.less");
 
 export class App extends React.Component {
@@ -19,7 +18,7 @@ export class App extends React.Component {
 
         this.onClickStartup = this.onClickStartup.bind(this);
 
-        PubSub.subscribe(pubSubTopics.APP_MAIN_STATE_CHANGED, (topic, value) => {
+        PubSub.subscribe(PubSub.customTopics.APP_MAIN_STATE_CHANGED, (topic, value) => {
             this.setState({main: value});
         });
     }
@@ -27,6 +26,7 @@ export class App extends React.Component {
     onClickStartup() {
         this.props.model.appState = 'stationSetting';
     }
+
 
     render() {
         if (this.state.main === 'initial') {
@@ -38,7 +38,7 @@ export class App extends React.Component {
         } else {
             return (
                 <div>
-                    <StationSettingsDialog />
+                    <StationSettingsDialog model={this.props.model} />
                 </div>
             );
         }
@@ -46,6 +46,7 @@ export class App extends React.Component {
 }
 
 (function() {
+    PubSub.customTopics = pubSubTopics;
     var mainModel = new MainModel();
-    ReactDOM.render(<App model={mainModel}/>, document.querySelector("#app"));
+    ReactDOM.render(<App model={mainModel} />, document.querySelector("#app"));
 }());

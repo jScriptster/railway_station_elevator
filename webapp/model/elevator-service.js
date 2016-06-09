@@ -34,13 +34,17 @@ var singletonServiceInstance = {
                 // Data reception is done, do whatever with it!
                 this.currentlyActive = 0;
                 this.currentlyInactive = 0;
-                this.facilitiesFull = JSON.parse(body);
-                for (let i = 0, len = this.facilitiesFull.length; i < len; i++) {
-                    if (this.facilitiesFull[i].state === 'ACTIVE') {
-                        this.currentlyActive++;
-                    } else if (this.facilitiesFull[i].state === 'INACTIVE') {
-                        this.currentlyInactive++;
+                try {
+                    this.facilitiesFull = JSON.parse(body);
+                    for (let i = 0, len = this.facilitiesFull.length; i < len; i++) {
+                        if (this.facilitiesFull[i].state === 'ACTIVE') {
+                            this.currentlyActive++;
+                        } else if (this.facilitiesFull[i].state === 'INACTIVE') {
+                            this.currentlyInactive++;
+                        }
                     }
+                } catch (err) {
+                    // TODO
                 }
             });
         });
