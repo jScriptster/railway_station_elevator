@@ -1,8 +1,8 @@
 import React from 'react';
-import PubSub from 'pubsub-js';
+import ReactComponentPubSub from '../react-component-pub-sub.jsx';
 import StationSearchSuggestItem from './station-search-suggest-item.jsx';
 
-export default class StationSearchSuggestion extends React.Component {
+export default class StationSearchSuggestion extends ReactComponentPubSub {
 
     constructor(props) {
         super(props);
@@ -11,7 +11,7 @@ export default class StationSearchSuggestion extends React.Component {
             suggestion: []
         };
 
-        PubSub.subscribe(PubSub.customTopics.SERACH_RESULT, (topic, val) => {
+        this.subscribe(this.pubSubTopics.SERACH_RESULT, (topic, val) => {
             this.setState({suggestion: val.entries});
         });
     }

@@ -28,7 +28,7 @@ export default class Stage extends React.Component {
         return (
             <div>
                 {selectionNodes}
-                <button onClick={this.onClickSettings}>Fertig!</button>
+                <button onClick={this.onClickSettings}>bearbeiten</button>
             </div>
         );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
-import PubSub from 'pubsub-js';
+import ReactComponentPubSub from '../react-component-pub-sub.jsx';
 
-export default class StationSearchSuggestItem extends React.Component {
+export default class StationSearchSuggestItem extends ReactComponentPubSub {
 
     constructor(props) {
         super(props);

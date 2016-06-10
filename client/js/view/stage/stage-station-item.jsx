@@ -1,8 +1,8 @@
 import React from 'react';
-import PubSub from 'pubsub-js';
+import ReactComponentPubSub from '../react-component-pub-sub.jsx';
 import StageStationItemDetails from './stage-station-item-details.jsx';
 
-export default class StageStationItem extends React.Component {
+export default class StageStationItem extends ReactComponentPubSub {
 
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ export default class StageStationItem extends React.Component {
 
         this.props.stationData.elevators.fetch();
 
-        PubSub.subscribe(PubSub.customTopics.ELEVATORS_FETCHED, (topic, value) => {
+        this.subscribe(this.pubSubTopics.ELEVATORS_FETCHED, (topic, value) => {
             this.setState({
                 isFetched: this.props.stationData.elevators.isFetched
             });

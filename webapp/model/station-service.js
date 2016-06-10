@@ -53,7 +53,7 @@ var singletonServiceInstance = {
             var hitCount = 0,
                 queryPart;
             if (queryArr.length === 1) {
-                queryPart = queryArr[0];
+                queryPart = queryArr[0].toLowerCase().trim();
                 if (queryPart.length < 6) {
                     hitCount += (elem.stationname.toLowerCase().indexOf(queryPart) === 0
                         || elem.city.toLowerCase().indexOf(queryPart) === 0) ? 1 : 0;
@@ -64,20 +64,16 @@ var singletonServiceInstance = {
 
             } else {
                 for (let i = 0, len = queryArr.length; i < len; i++) {
-                    queryPart = queryArr[i];
-                    if (queryPart.length < 2) {
-                        hitCount += (elem.stationname.toLowerCase().indexOf(queryPart) === 0
-                            || elem.city.toLowerCase().indexOf(queryPart) === 0) ? 1 : 0;
-                    } else {
-                        hitCount += (elem.stationname.toLowerCase().indexOf(queryPart) > -1
-                            || elem.city.toLowerCase().indexOf(queryPart) > -1) ? 1 : 0;
-                    }
+                    queryPart = queryArr[i].toLowerCase().trim();
+                    hitCount += (elem.stationname.toLowerCase().indexOf(queryPart) > -1
+                        || elem.city.toLowerCase().indexOf(queryPart) > -1) ? 1 : 0;
                 }
             }
 
             return hitCount === queryArr.length;
         });
 
+        result.payload.entries = result.payload.entries.slice(0, Math.min(result.payload.entries.length, 5));
         return result;
     }
 };

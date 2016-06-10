@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PubSub from 'pubsub-js';
 import * as pubSubTopics from './pub-sub-topics.js';
+import ReactComponentPubSub from './view/react-component-pub-sub.jsx';
 import MainModel from './model/main-model'
 import StationSettingsDialog from './view/search/station-setting-dialog.jsx';
 import Stage from './view/stage/stage.jsx';
 
 require("./../less/index.less");
 
-export class App extends React.Component {
+export class App extends ReactComponentPubSub {
 
     constructor(props) {
         super(props);
@@ -19,7 +20,7 @@ export class App extends React.Component {
 
         this.onClickStartup = this.onClickStartup.bind(this);
 
-        PubSub.subscribe(PubSub.customTopics.APP_MAIN_STATE_CHANGED, (topic, value) => {
+        this.subscribe(pubSubTopics.APP_MAIN_STATE_CHANGED, (topic, value) => {
             this.setState({main: value});
         });
     }
