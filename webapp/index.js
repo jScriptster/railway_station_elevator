@@ -5,7 +5,7 @@ var express = require('express'),
 
 var app = express();
 
-var urlStatic = '/static/' + packageJSON.version;
+var urlStatic = '/static/v' + packageJSON.version;
 var urlApiStationSearch = '/api/station/search/:query';
 
 app.set('views', __dirname + '/view');

@@ -6,8 +6,12 @@ export default class StationSearchModel {
     }
 
     search(query) {
+        if (query.length === 0) {
+            return;
+        }
+        
         this._currentQuery = query;
-        window.fetch('/api/station/search/:query'.replace(':query', query))
+        window.fetch(window.jScriptster.railway.url.apiStationSearch.replace(':query', query))
             .then((response) => {
                 return response.json()
             }).then((json) => {
@@ -16,6 +20,6 @@ export default class StationSearchModel {
                 }
             }).catch((ex) => {
                 console.log('parsing failed', ex)
-            })
+            });
     }
 }

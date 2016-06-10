@@ -4,6 +4,7 @@ import PubSub from 'pubsub-js';
 import * as pubSubTopics from './pub-sub-topics.js';
 import MainModel from './model/main-model'
 import StationSettingsDialog from './view/search/station-setting-dialog.jsx';
+import Stage from './view/stage/stage.jsx';
 
 require("./../less/index.less");
 
@@ -24,7 +25,7 @@ export class App extends React.Component {
     }
 
     onClickStartup() {
-        this.props.model.appState = 'stationSetting';
+        this.props.model.appState = 'settings';
     }
 
 
@@ -33,6 +34,12 @@ export class App extends React.Component {
             return (
                 <div>
                     <button onClick={this.onClickStartup}>Eigene Route checken</button>
+                </div>
+            );
+        } else if (this.state.main === 'stage') {
+            return (
+                <div>
+                    <Stage model={this.props.model} />
                 </div>
             );
         } else {

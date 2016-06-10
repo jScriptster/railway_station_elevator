@@ -5,8 +5,13 @@ import StationSelection from './station-selection.jsx'
 
 export default class StationSettingDialog extends React.Component {
 
-    onClickStartup() {
-        console.log('startup');
+    constructor(props) {
+        super(props);
+        this.onClickSubmit = this.onClickSubmit.bind(this);
+    }
+
+    onClickSubmit(e) {
+        this.props.model.appState = 'stage';
     }
 
     render() {
@@ -15,6 +20,7 @@ export default class StationSettingDialog extends React.Component {
                 <StationSearch model={this.props.model} />
                 <StationSearchSuggestion model={this.props.model} />
                 <StationSelection model={this.props.model} />
+                <button onClick={this.onClickSubmit}>Fertig!</button>
             </div>
         );
     }

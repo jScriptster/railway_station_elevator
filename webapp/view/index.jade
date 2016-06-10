@@ -1,19 +1,20 @@
-html
+doctype html
+html(lang="de")
     head
         link(rel="stylesheet", href="#{url.static}/dist/main.css")
 
+        script(type="text/javascript").
+            var jScriptster = jScriptster || {};
+            jScriptster.railway = jScriptster.railway || {};
+            jScriptster.railway.url = {
+                elevators: '#{url.elevators}',
+                stations: '#{url.stations}/:stationId',
+                static: '#{url.static}',
+                apiStationSearch: '#{url.apiStationSearch}'
+            };
+
     body
-
-        h1 Hello Jade!
-
-
-        p #{numberCurrentlyInactiveElevators}
-        p #{numberCurrentlyActiveElevators}
-        p #{url.elevators}
-        p #{url.stations}
-        p #{url.static}
-        p #{url.apiStationSearch}
-
+        h1 ACTIVE: #{numberCurrentlyInactiveElevators} INACTIVE: #{numberCurrentlyActiveElevators}
 
         div#app
         script(src="#{url.static}/dist/bundle.js", type="text/javascript")

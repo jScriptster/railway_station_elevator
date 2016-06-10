@@ -7,7 +7,7 @@ export default class StationSelection extends React.Component {
         super(props);
 
         this.state = {
-            stations: []
+            stations: this.props.model.stationSelection.selection
         };
 
         PubSub.subscribe(PubSub.customTopics.STATION_SELECTION_CHANGED, (topic, value) => {
