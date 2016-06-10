@@ -9,7 +9,7 @@ export default class StationSearchModel {
         if (query.length === 0) {
             return;
         }
-        
+
         this._currentQuery = query;
         window.fetch(window.jScriptster.railway.url.apiStationSearch.replace(':query', query))
             .then((response) => {

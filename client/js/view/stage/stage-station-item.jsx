@@ -1,5 +1,6 @@
 import React from 'react';
 import PubSub from 'pubsub-js';
+import StageStationItemDetails from './stage-station-item-details.jsx';
 
 export default class StageStationItem extends React.Component {
 
@@ -7,8 +8,11 @@ export default class StageStationItem extends React.Component {
         super(props);
 
         this.state = {
-            isFetched: this.props.stationData.elevators.isFetched
+            isFetched: this.props.stationData.elevators.isFetched,
+            detailsVisible: false
         };
+
+        this.onClickItem = this.onClickItem.bind(this);
 
         this.props.stationData.elevators.fetch();
 
@@ -19,19 +23,27 @@ export default class StageStationItem extends React.Component {
         });
     }
 
-
+    onClickItem(e) {
+        if (this.props.stationData.elevators.isFetched) {
+            this.setState({
+                detailsVisible: !this.state.detailsVisible
+            });
+        }
+    }
 
     render() {
+        var detailsElement;
+
+        if (this.state.detailsVisible) {
+            detailsElement =
+                (<StageStationItemDetails model={this.props.model} stationData={this.props.stationData} />);
+        }
+
         return (
-            <div>
+            <div onClick={this.onClickItem}>
                 <strong>{this.props.stationData.name} </strong>
                 <span>{this.state.isFetched?'OK':'LOADING'} </span>
-                <p>
-                    <strong>Anzahl: </strong><span>{this.props.stationData.elevators.countAll} </span>
-                    <strong>Aktiv: </strong><span>{this.props.stationData.elevators.countStateActive} </span>
-                    <strong>Defekt: </strong><span>{this.props.stationData.elevators.countStateInactive} </span>
-                    <strong>Unbekannt: </strong><span>{this.props.stationData.elevators.countStateUnknown} </span>
-                </p>
+                {detailsElement}
             </div>
         );
     }
