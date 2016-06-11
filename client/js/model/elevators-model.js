@@ -1,7 +1,8 @@
-import PubSub from 'pubsub-js';
+import Publisher from './publisher.js';
 
-export default class ElevatorsModel {
+export default class ElevatorsModel extends Publisher {
     constructor(stationId) {
+        super();
         this.__data = {
             facilities: [],
             countStateActive: 0,
@@ -36,9 +37,9 @@ export default class ElevatorsModel {
                         break;
                     }
                 }
-                PubSub.publish(PubSub.customTopics.ELEVATORS_FETCHED, json.facilities);
+                this.publish(this.pubSubTopics.ELEVATORS_FETCHED, this._stationId);
             }).catch((ex) => {
-                console.log('parsing failed', ex)
+                console.log('parsing failed', ex);
             });
     }
 

@@ -18,15 +18,15 @@ export default class StationSelection extends ReactComponentPubSub {
     }
 
     onClickRemove(e) {
-        console.log('remove');
+        this.props.model.stationSelection.removeStation(e.currentTarget.dataset.index);
     }
 
     render() {
-        var selectionNodes = this.state.stations.map((station) => {
+        var selectionNodes = this.state.stations.map((station, index) => {
             return (
-                <div>
+                <div key={index}>
                     <strong>{station.name}</strong>
-                    <button onClick={this.onClickRemove}>Entfernen</button>
+                    <button onClick={this.onClickRemove} data-index={index}>Entfernen</button>
                 </div>
             );
         });

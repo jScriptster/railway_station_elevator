@@ -13,6 +13,10 @@ export default class ReactComponentPubSub extends React.Component {
         this.__pubSubToken.push(PubSub.subscribe(topic, fct));
     }
 
+    publish(topic, value) {
+        PubSub.publish(topic, value);
+    }
+
     get pubSubTopics() {
         return pubSubTopics;
     }

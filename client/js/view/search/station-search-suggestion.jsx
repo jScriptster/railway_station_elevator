@@ -17,11 +17,12 @@ export default class StationSearchSuggestion extends ReactComponentPubSub {
     }
 
     render() {
-        var suggestNodes = this.state.suggestion.map((suggest) => {
+        var suggestNodes = this.state.suggestion.map((suggest, index) => {
             return (
                 <StationSearchSuggestItem
                     stationData={suggest}
                     model={this.props.model}
+                    key={index}
                 />
             );
         });

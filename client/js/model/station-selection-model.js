@@ -1,8 +1,9 @@
-import PubSub from 'pubsub-js';
+import Publisher from './publisher.js';
 import ElevatorsModel from './elevators-model.js';
 
-export default class StationSearchModel {
+export default class StationSearchModel extends Publisher {
     constructor() {
+        super();
         this.__data = {
             selection: []
         };
@@ -16,7 +17,14 @@ export default class StationSearchModel {
             elevators: new ElevatorsModel(stationData.id)
         });
 
-        PubSub.publish(PubSub.customTopics.STATION_SELECTION_CHANGED, this.selection);
+        this.publish(this.pubSubTopics.STATION_SELECTION_CHANGED, this.selection);
+    }
+
+    removeStation(index) {
+        if (index < this.__data.selection.length) {
+            this.__data.selection.splice(index, 1);
+            this.publish(this.pubSubTopics.STATION_SELECTION_CHANGED, this.selection);
+        }
     }
 
     fetchElevators() {

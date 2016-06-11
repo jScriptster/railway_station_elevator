@@ -19,9 +19,9 @@ export default class Stage extends React.Component {
 
     render() {
 
-        var selectionNodes = this.state.stations.map((station) => {
+        var selectionNodes = this.state.stations.map((station, index) => {
             return (
-                <StageStationItem model={this.props.model} stationData={station} />
+                <StageStationItem model={this.props.model} stationData={station} key={index} />
             );
         });
 

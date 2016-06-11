@@ -1,9 +1,10 @@
-import PubSub from 'pubsub-js';
+import Publisher from './publisher.js';
 import StationSearchModel from './station-search-model';
 import StationSelectionModel from './station-selection-model';
 
-export default class MainModel {
+export default class MainModel extends Publisher {
     constructor() {
+        super();
         this.__submodel = {
             stationSearch: new StationSearchModel(),
             stationSelection: new StationSelectionModel()
@@ -18,7 +19,7 @@ export default class MainModel {
     set appState(val) {
         if (this.__data.appState !== val) {
             this.__data.appState = val;
-            PubSub.publish(PubSub.customTopics.APP_MAIN_STATE_CHANGED, val);
+            this.publish(this.pubSubTopics.APP_MAIN_STATE_CHANGED, val);
         }
     }
 

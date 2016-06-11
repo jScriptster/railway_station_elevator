@@ -17,9 +17,12 @@ export default class StageStationItem extends ReactComponentPubSub {
         this.props.stationData.elevators.fetch();
 
         this.subscribe(this.pubSubTopics.ELEVATORS_FETCHED, (topic, value) => {
-            this.setState({
-                isFetched: this.props.stationData.elevators.isFetched
-            });
+            if (value === this.props.stationData.stationId) {
+                console.log('OK');
+                this.setState({
+                    isFetched: this.props.stationData.elevators.isFetched
+                });
+            }
         });
     }
 

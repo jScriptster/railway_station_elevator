@@ -1,7 +1,8 @@
-import PubSub from 'pubsub-js';
+import Publisher from './publisher.js';
 
-export default class StationSearchModel {
+export default class StationSearchModel extends Publisher {
     constructor() {
+        super();
         this._currentQuery = '';
     }
 
@@ -16,7 +17,7 @@ export default class StationSearchModel {
                 return response.json()
             }).then((json) => {
                 if (json.q === this._currentQuery) {
-                    PubSub.publish(PubSub.customTopics.SERACH_RESULT, json.payload);
+                    this.publish(this.pubSubTopics.SERACH_RESULT, json.payload);
                 }
             }).catch((ex) => {
                 console.log('parsing failed', ex)
