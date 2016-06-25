@@ -24,15 +24,19 @@ export default class StationSelection extends ReactComponentPubSub {
     render() {
         var selectionNodes = this.state.stations.map((station, index) => {
             return (
-                <div key={index}>
-                    <strong>{station.name}</strong>
-                    <button onClick={this.onClickRemove} data-index={index}>Entfernen</button>
-                </div>
+                <li key={index} className="station-selection__item">
+                    <span className="station-selection__icon icon-location"></span>
+                    <strong className="station-selection__name">{station.name}</strong>
+                    <span className="station-selection__city">{station.city}</span>
+                    <button className="station-selection__remove-btn" onClick={this.onClickRemove} data-index={index}><span className="icon-cross"></span></button>
+                </li>
             );
         });
         return (
-            <div>
-            {selectionNodes}
+            <div className="station-selection">
+                <ul>
+                    {selectionNodes}
+                </ul>
             </div>
         );
     }

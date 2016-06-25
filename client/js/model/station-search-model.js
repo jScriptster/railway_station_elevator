@@ -8,6 +8,7 @@ export default class StationSearchModel extends Publisher {
 
     search(query) {
         if (query.length === 0) {
+            this.clear();
             return;
         }
 
@@ -22,5 +23,9 @@ export default class StationSearchModel extends Publisher {
             }).catch((ex) => {
                 console.log('parsing failed', ex)
             });
+    }
+
+    clear() {
+        this.publish(this.pubSubTopics.SERACH_CLEAR);
     }
 }

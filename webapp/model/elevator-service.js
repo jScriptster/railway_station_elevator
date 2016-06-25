@@ -22,6 +22,7 @@ var singletonServiceInstance = {
 
     currentlyActive: 0,
     currentlyInactive: 0,
+    currentlyUnknownState: 0,
 
     fetch () {
         return https.get(fetchOptions, (response) => {
@@ -41,6 +42,8 @@ var singletonServiceInstance = {
                             this.currentlyActive++;
                         } else if (this.facilitiesFull[i].state === 'INACTIVE') {
                             this.currentlyInactive++;
+                        } else {
+                            this.currentlyUnknownState++;
                         }
                     }
                 } catch (err) {
@@ -56,6 +59,22 @@ var singletonServiceInstance = {
 
     get numberCurrentlyActive () {
         return this.currentlyActive;
+    },
+
+    get numberCurrentlyUnknownState () {
+        return this.currentlyUnknownState;
+    },
+
+    get numberAll () {
+        return this.currentlyActive + this.currentlyInactive + this.currentlyUnknownState;
+    },
+
+    get percentCurrentlyInactive () {
+        return 100 / this.numberAll * this.currentlyInactive;
+    },
+
+    get percentCurrentlyActive () {
+        return 100 / this.numberAll * this.currentlyActive;
     },
 
     get urlElevators () {

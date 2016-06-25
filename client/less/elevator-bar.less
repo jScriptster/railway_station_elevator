@@ -1,0 +1,23 @@
+.elevator-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background-color: @color-unknown;
+    border-bottom: 1px solid #000000;
+
+    &__part {
+        position: absolute;
+        left: 0px;
+        height: 100%;
+    }
+
+    &__part--active {
+        background-color: @color-active;
+    }
+
+    &__part--inactive {
+        background-color: @color-inactive;
+    }
+}

@@ -16,11 +16,16 @@ export default class StationSettingDialog extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="search-dialog">
+                <StationSelection model={this.props.model} />
                 <StationSearch model={this.props.model} />
                 <StationSearchSuggestion model={this.props.model} />
-                <StationSelection model={this.props.model} />
-                <button onClick={this.onClickSubmit}>Fertig!</button>
+                <div className="search-dialog__submit-layer">
+                    <div className="search-dialog__submit-layer-inner">
+                        <button className="search-dialog__submit-btn" onClick={this.onClickSubmit}><span className="icon-checkmark"></span>Fertig</button>
+                    </div>
+                </div>
+
             </div>
         );
     }

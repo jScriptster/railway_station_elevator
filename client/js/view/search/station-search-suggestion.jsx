@@ -14,6 +14,10 @@ export default class StationSearchSuggestion extends ReactComponentPubSub {
         this.subscribe(this.pubSubTopics.SERACH_RESULT, (topic, val) => {
             this.setState({suggestion: val.entries});
         });
+
+        this.subscribe(this.pubSubTopics.SERACH_CLEAR, (topic, val) => {
+            this.setState({suggestion: []});
+        });
     }
 
     render() {
@@ -26,10 +30,11 @@ export default class StationSearchSuggestion extends ReactComponentPubSub {
                 />
             );
         });
+
         return (
-            <div>
+            <ul className={suggestNodes.length===0?'search-suggest search-suggest--empty':'search-suggest'}>
                 {suggestNodes}
-            </div>
+            </ul>
         );
     }
 }

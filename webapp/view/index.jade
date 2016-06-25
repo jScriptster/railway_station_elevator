@@ -1,6 +1,7 @@
 doctype html
 html(lang="de")
     head
+        include icon-style-fragment.jade
         link(rel="stylesheet", href="#{url.static}/dist/main.css")
 
         script(type="text/javascript").
@@ -14,7 +15,37 @@ html(lang="de")
             };
 
     body
-        h1 ACTIVE: #{numberCurrentlyInactiveElevators} INACTIVE: #{numberCurrentlyActiveElevators}
+
+        div.elevator-bar
+            div.elevator-bar__part.elevator-bar__part--inactive(style="width:#{elevatorStatistics.percentCurrentlyActive+elevatorStatistics.percentCurrentlyInactive}%;")
+            div.elevator-bar__part.elevator-bar__part--active(style="width:#{elevatorStatistics.percentCurrentlyActive}%;")
+
+        div#splashscreen.splashscreen
+            h1.label Geht der fu'ing Fahrstuhl?
+
+
+            div.flex
+                div.splashscreen__info-box
+                    span.splashscreen__icon.icon-smile.color--active
+                    span.splashscreen__count.color--active #{elevatorStatistics.numberCurrentlyActive}
+                div.splashscreen__info-box
+                    span.splashscreen__icon.icon-frustrated.color--inactive
+                    span.splashscreen__count.color--inactive #{elevatorStatistics.numberCurrentlyInactive}
+                div.splashscreen__info-box
+                    span.splashscreen__icon.icon-question.color--unknown
+                    span.splashscreen__count.color--unknown #{elevatorStatistics.numberCurrentlyUnknown}
+
+
+
+            div.splashscreen__onion.onion(style="display:none;")
+                div.onion__skin
+                    div.onion__ring.onion__ring--all
+                    div.onion__ring.onion__ring--active(style="width:#{elevatorStatistics.percentCurrentlyActive+elevatorStatistics.percentCurrentlyInactive}%;height:#{elevatorStatistics.percentCurrentlyActive+elevatorStatistics.percentCurrentlyInactive}%;")
+                    div.onion__ring.onion__ring--inactive(style="width:#{elevatorStatistics.percentCurrentlyInactive}%;height:#{elevatorStatistics.percentCurrentlyInactive}%;")
+
+
+
 
         div#app
+
         script(src="#{url.static}/dist/bundle.js", type="text/javascript")

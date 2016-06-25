@@ -17,8 +17,13 @@ app.get(urlApiStationSearch, (req, res) => {
 
 app.get('/', (req, res) => {
     res.render('index', {
-        numberCurrentlyInactiveElevators: elevatorService.numberCurrentlyInactive,
-        numberCurrentlyActiveElevators: elevatorService.numberCurrentlyActive,
+        elevatorStatistics: {
+            numberCurrentlyInactive: elevatorService.numberCurrentlyInactive,
+            numberCurrentlyActive: elevatorService.numberCurrentlyActive,
+            numberCurrentlyUnknown: elevatorService.numberCurrentlyUnknownState,
+            percentCurrentlyActive: elevatorService.percentCurrentlyActive,
+            percentCurrentlyInactive: elevatorService.percentCurrentlyInactive
+        },
         url: {
             elevators: elevatorService.urlElevators,
             stations: elevatorService.urlStations,

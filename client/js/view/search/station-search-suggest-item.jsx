@@ -9,17 +9,17 @@ export default class StationSearchSuggestItem extends ReactComponentPubSub {
     }
 
     onClickItem(e) {
+        this.props.model.stationSearch.clear();
         this.props.model.stationSelection.addStation(this.props.stationData);
     }
 
     render() {
         return (
-            <div onClick={this.onClickItem}>
-                <span>{this.props.stationData.id} </span>
-                <span>{this.props.stationData.stationname} </span>
-                <span>{this.props.stationData.city} </span>
-                <span>{this.props.stationData.land} </span>
-            </div>
+            <li className="search-suggest__item" onClick={this.onClickItem}>
+                <span className="search-suggest__stationname">{this.props.stationData.stationname} </span>
+                <span className="search-suggest__city label--size-s">{this.props.stationData.city}, </span>
+                <span className="search-suggest__land label--size-s">{this.props.stationData.land} </span>
+            </li>
         );
     }
 }

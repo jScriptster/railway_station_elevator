@@ -1,3 +1,52 @@
-body {
-  background-color: #aaaaaa;
+@color-active: cornflowerblue;
+@color-inactive: orangered;
+@color-unknown: #444444;
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
 }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #010005;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+*:focus {
+  outline: none;
+}
+
+.splashscreen {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+.flex {
+  display: flex;
+}
+
+@import 'color';
+@import 'splashscreen';
+@import 'station-selection';
+@import 'onion';
+@import 'search-dialog';
+@import 'search-suggest';
+@import 'stage';
+@import 'elevator-bar';

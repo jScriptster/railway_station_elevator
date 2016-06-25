@@ -26,9 +26,9 @@ export default class Stage extends React.Component {
         });
 
         return (
-            <div>
+            <div className="stage">
                 {selectionNodes}
-                <button onClick={this.onClickSettings}>bearbeiten</button>
+                <button onClick={this.onClickSettings}><span className="stage__edit-btn icon-equalizer2"></span></button>
             </div>
         );
     }

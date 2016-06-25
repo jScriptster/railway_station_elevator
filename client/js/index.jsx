@@ -26,6 +26,9 @@ export class App extends ReactComponentPubSub {
     }
 
     onClickStartup() {
+        var splashscreen = document.getElementById('splashscreen');
+        splashscreen.parentNode.removeChild(splashscreen);
+
         this.props.model.appState = 'settings';
     }
 
@@ -34,7 +37,7 @@ export class App extends ReactComponentPubSub {
         if (this.state.main === 'initial') {
             return (
                 <div>
-                    <button onClick={this.onClickStartup}>Eigene Route checken</button>
+                    <button onClick={this.onClickStartup}><span className="icon-location"></span>Eigene Route checken</button>
                 </div>
             );
         } else if (this.state.main === 'stage') {
